@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './App.module.css';
+import styles from '../App.module.css';
 
 const ContactForm = ({ formSubmit }) => {
   return (
