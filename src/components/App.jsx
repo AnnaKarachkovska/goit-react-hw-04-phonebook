@@ -33,7 +33,6 @@ const App = () => {
     }
 
     setContacts(contacts= [...contacts, { name: name, id: nanoid(), number: number }]);
-
     form.reset();
   };
 
