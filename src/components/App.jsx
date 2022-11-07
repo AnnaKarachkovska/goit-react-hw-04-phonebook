@@ -14,7 +14,7 @@ const App = () => {
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ];
 
-  let [contacts, setContacts] = useState(contactsDefault);
+  let [contacts, setContacts] = useState(JSON.parse(localStorage.getItem('Contacts')) || contactsDefault);
   let [filter, setFilter] = useState('');
 
   const handleSubmit = ev => {
@@ -32,12 +32,12 @@ const App = () => {
       return;
     }
 
-    setContacts(contacts= [...contacts, { name: name, id: nanoid(), number: number }]);
+    setContacts([...contacts, { name: name, id: nanoid(), number: number }]);
     form.reset();
   };
 
   const handleChange = ev => {
-    setFilter((filter = ev.currentTarget.value));
+    setFilter((ev.currentTarget.value));
   };
 
   const filterItems = () => {
@@ -51,16 +51,8 @@ const App = () => {
     const filteredContacts = contacts.filter(
       contact => contact.id !== ev.target.id
     );
-    setContacts((contacts = filteredContacts));
+    setContacts((filteredContacts));
   };
-
-  useEffect(() => {
-    const storageContacts = JSON.parse(localStorage.getItem('Contacts'));
-    
-    if (storageContacts) {
-      setContacts(contacts = storageContacts);
-    }
-  }, []);
 
   useEffect(() => {
     localStorage.setItem('Contacts', JSON.stringify(contacts));
